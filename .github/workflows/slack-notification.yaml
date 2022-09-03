@@ -8,41 +8,41 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Test
-      run: |
-        echo "Test"
-        exit 1
+      - name: Test
+        run: |
+          echo "Test"
+          exit 1
 
-    # 参考資料: Slack が提供する GitHub Action "slack-send" を使って GitHub から Slack に通知する - Qiita
-    #   https://qiita.com/seratch/items/28d09eacada09134c96c
-    - name: Failure Notification
-      if: failure()
-      uses: slackapi/slack-github-action@v1.21.0
-      with:
-          payload: |
-            {
-              "text": ":github: ビルド結果: ${{ job.status }}\n\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": ":github: ビルド結果: ${{ job.status }}\n\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-                  }
-                },
-                {
-                  "type": "context",
-                  "elements": [
-                    {
+      # 参考資料: Slack が提供する GitHub Action "slack-send" を使って GitHub から Slack に通知する - Qiita
+      #   https://qiita.com/seratch/items/28d09eacada09134c96c
+      - name: Failure Notification
+        if: failure()
+        uses: slackapi/slack-github-action@v1.21.0
+        with:
+            payload: |
+              {
+                "text": ":github: ビルド結果: ${{ job.status }}\n\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+                "blocks": [
+                  {
+                    "type": "section",
+                    "text": {
                       "type": "mrkdwn",
-                      "text": "Author: <https://github.com/${{ github.event.sender.login }}|@${{ github.event.sender.login }}>"
+                      "text": ":github: ビルド結果: ${{ job.status }}\n\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
                     }
-                  ]
-                }
-              ]
-            }
-        env:
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
+                  },
+                  {
+                    "type": "context",
+                    "elements": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "Author: <https://github.com/${{ github.event.sender.login }}|@${{ github.event.sender.login }}>"
+                      }
+                    ]
+                  }
+                ]
+              }
+          env:
+            SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
