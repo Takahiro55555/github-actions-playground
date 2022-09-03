@@ -13,8 +13,11 @@ jobs:
           echo "Test"
           exit 1
 
-      # 参考資料: Slack が提供する GitHub Action "slack-send" を使って GitHub から Slack に通知する - Qiita
-      #   https://qiita.com/seratch/items/28d09eacada09134c96c
+      # 参考資料
+      # - Slack が提供する GitHub Action "slack-send" を使って GitHub から Slack に通知する - Qiita
+      #     https://qiita.com/seratch/items/28d09eacada09134c96c
+      # - GitHub Actionsで1つ以上のジョブが失敗した場合にSlackに通知する
+      #     https://zenn.dev/ntoy/articles/3e7521cd39a75b
       - name: Failure Notification
         if: failure()
         uses: slackapi/slack-github-action@v1.21.0
