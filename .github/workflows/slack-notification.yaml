@@ -11,8 +11,12 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Test
-      run: exit 1
+      run: |
+        echo "Test"
+        exit 1
 
+    # 参考資料: Slack が提供する GitHub Action "slack-send" を使って GitHub から Slack に通知する - Qiita
+    #   https://qiita.com/seratch/items/28d09eacada09134c96c
     - name: Failure Notification
       if: failure()
       uses: slackapi/slack-github-action@v1.21.0
