@@ -29,7 +29,7 @@ jobs:
                   "type": "header",
                   "text": {
                     "type": "plain_text",
-                    "text": ":github: CI Failure",
+                    "text": ":github: CI Failed",
                     "emoji": true
                   }
                 },
@@ -41,29 +41,13 @@ jobs:
                   }
                 },
                 {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "CI結果を確認する"
-                  },
-                  "accessory": {
-                    "type": "button",
-                    "text": {
-                      "type": "plain_text",
-                      "text": "Click Me",
-                      "emoji": true
-                    },
-                    "value": "click_me_123",
-                    "action_id": "button-action",
-                    "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-                  }
-                },
-                {
                   "type": "context",
                   "elements": [
                     {
                       "type": "mrkdwn",
-                      "text": "Author: <https://github.com/${{ github.event.sender.login }}|@${{ github.event.sender.login }}>\n"
+                      "text": "Repository: <${{ github.server_url }}/${{ github.repository }}|${{ github.repository }}>
+                               Branch: ${{ github.ref_name }}
+                               Author: <https://github.com/${{ github.event.sender.login }}|@${{ github.event.sender.login }}>"
                     }
                   ]
                 }
