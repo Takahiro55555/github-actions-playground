@@ -45,8 +45,8 @@ jobs:
                   "elements": [
                     {
                       "type": "mrkdwn",
-                      "text": "Repository: <${{ github.server_url }}/${{ github.repository }}|${{ github.repository }}>
-                               Branch: ${{ github.ref_name }}
+                      "text": "Repository: <${{ github.server_url }}/${{ github.repository }}|${{ github.repository }}>\n\
+                               Branch: ${{ github.ref_name }}\n\
                                Author: <https://github.com/${{ github.event.sender.login }}|@${{ github.event.sender.login }}>"
                     }
                   ]
