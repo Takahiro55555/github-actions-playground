@@ -26,14 +26,6 @@ jobs:
             {
               "blocks": [
                 {
-                  "type": "header",
-                  "text": {
-                    "type": "plain_text",
-                    "text": ":github: CI Failed",
-                    "emoji": true
-                  }
-                },
-                {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
